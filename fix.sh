@@ -8,14 +8,21 @@ DOMAIN="your_domain.com"
 WEB_ROOT="/var/www/html"
 PHP_VERSION="7.4"
 
+# Update package list
+sudo apt-get update
+
 # Install Nginx
 echo "Installing Nginx..."
-sudo apt-get update
 sudo apt-get install -y nginx
 
 # Install PHP and necessary extensions
 #echo "Installing PHP and necessary extensions..."
 #sudo apt-get install -y php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql
+
+# Ensure PHP-FPM is running
+echo "Ensuring PHP-FPM is running..."
+sudo systemctl start php$PHP_VERSION-fpm
+sudo systemctl enable php$PHP_VERSION-fpm
 
 # Configure Nginx for WordPress
 echo "Configuring Nginx for WordPress..."
@@ -50,15 +57,13 @@ EOL
 echo "Enabling the Nginx configuration..."
 sudo ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
 
+# Remove the default Nginx site
+sudo rm /etc/nginx/sites-enabled/default
+
 # Test Nginx configuration and restart
 echo "Testing Nginx configuration and restarting..."
 sudo nginx -t
 sudo systemctl restart nginx
-
-# Ensure PHP-FPM is running
-echo "Ensuring PHP-FPM is running..."
-sudo systemctl start php$PHP_VERSION-fpm
-sudo systemctl enable php$PHP_VERSION-fpm
 
 # Set correct permissions for the web root
 echo "Setting correct permissions for the web root..."
