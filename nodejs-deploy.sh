@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get install -y git curl gnupg build-essential
 
 # Install Node.js
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # Clone the repository
