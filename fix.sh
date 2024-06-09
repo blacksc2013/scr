@@ -14,8 +14,8 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 # Install PHP and necessary extensions
-echo "Installing PHP and necessary extensions..."
-sudo apt-get install -y php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql
+#echo "Installing PHP and necessary extensions..."
+#sudo apt-get install -y php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql
 
 # Configure Nginx for WordPress
 echo "Configuring Nginx for WordPress..."
