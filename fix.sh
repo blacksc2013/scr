@@ -20,9 +20,9 @@ sudo apt-get install -y nginx
 #sudo apt-get install -y php$PHP_VERSION php$PHP_VERSION-fpm php$PHP_VERSION-mysql
 
 # Ensure PHP-FPM is running
-echo "Ensuring PHP-FPM is running..."
-sudo systemctl start php$PHP_VERSION-fpm
-sudo systemctl enable php$PHP_VERSION-fpm
+#echo "Ensuring PHP-FPM is running..."
+#sudo systemctl start php$PHP_VERSION-fpm
+#sudo systemctl enable php$PHP_VERSION-fpm
 
 # Configure Nginx for WordPress
 echo "Configuring Nginx for WordPress..."
