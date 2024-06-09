@@ -46,8 +46,8 @@ echo "Saving current PM2 configuration..."
 pm2 save
 
 # Set PM2 to log everything
-echo "Setting PM2 to log everything..."
-pm2 log > $PM2_LOG_FILE 2>&1
+#echo "Setting PM2 to log everything..."
+#pm2 log > $PM2_LOG_FILE 2>&1
 
 # Install Nginx
 echo "Installing Nginx..."
