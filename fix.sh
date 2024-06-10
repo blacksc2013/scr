@@ -1,38 +1,22 @@
 #!/bin/bash
 
-# Define variables for the Nginx configuration file paths
-CONFIG_FILE="/etc/nginx/sites-available/your-site.conf"
-NGINX_SITES_ENABLED="/etc/nginx/sites-enabled"
+# Stop Nginx service
+sudo systemctl stop nginx
 
-# Add configuration for WordPress default page
-cat <<EOL >> $CONFIG_FILE
-location / {
-    try_files $uri $uri/ /index.php?$args;
-}
+# Remove Nginx packages
+sudo apt-get purge nginx nginx-common -y
 
-location ~ \.php$ {
-    include snippets/fastcgi-php.conf;
-    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-}
+# Remove Nginx configuration files
+sudo apt-get purge nginx-* -y
+sudo rm -rf /etc/nginx
 
-EOL
+# Clean up dependencies
+sudo apt-get autoremove -y
 
-# Add configuration for wp-admin access
-cat <<EOL >> $CONFIG_FILE
-location /wp-admin {
-    index index.php;
-    try_files $uri $uri/ /wp-admin/index.php?$args;
-}
+# Verify removal
+nginx -v
+systemctl status nginx
 
-location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-    expires max;
-    log_not_found off;
-}
-
-EOL
-
-# Symlink the configuration file to the sites-enabled directory
-ln -s $CONFIG_FILE $NGINX_SITES_ENABLED
-
-# Reload Nginx to apply the changes
-systemctl reload nginx
+# Optional: Remove Nginx logs and data
+sudo rm -rf /var/log/nginx
+sudo rm -rf /var/www/html
