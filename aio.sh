@@ -12,10 +12,10 @@ echo "Securing MySQL installation..."
 sudo mysql_secure_installation
 
 # Set MySQL root password and create database for WordPress
-MYSQL_ROOT_PASSWORD="your_mysql_root_password"
+MYSQL_ROOT_PASSWORD="rootpassword"
 WORDPRESS_DB_NAME="wordpress"
 WORDPRESS_DB_USER="wordpressuser"
-WORDPRESS_DB_PASSWORD="your_wordpress_db_password"
+WORDPRESS_DB_PASSWORD="wordpresspassword"
 
 echo "Creating WordPress database and user..."
 sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<MYSQL_SCRIPT
